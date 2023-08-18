@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Primeiro App Otavio T. F. da Cunha',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Projeto de demonstração do Otavio'),
     );
   }
 }
@@ -56,6 +56,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  String _mensagem = "";
+  TextStyle _corTexto = TextStyle(color: Colors.black);
 
   void _incrementCounter() {
     setState(() {
@@ -65,7 +67,29 @@ class _MyHomePageState extends State<MyHomePage> {
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       _counter++;
+      _escreveMensagem();
     });
+  }
+  void _escreveMensagem(){
+    if(_counter > 0 && _counter <= 5){
+      _mensagem = "Muito bem...";
+      _corTexto = TextStyle(color: Colors.blueGrey);
+    }else if(_counter > 5 && _counter <= 10){
+      _mensagem = "É isso ai, continue clicando...";
+      _corTexto = TextStyle(color: Colors.blue);
+    }else if(_counter > 10 && _counter <= 15){
+      _mensagem = "Nossa, você está indo bem...";
+      _corTexto = TextStyle(color: Colors.yellow);
+    }else if(_counter > 15 && _counter <= 20){
+      _mensagem = "Uau, vamos ver até onde você vai...";
+      _corTexto = TextStyle(color: Colors.orange);
+    }else if(_counter > 25 && _counter <= 50){
+      _mensagem = "Caraca! Que dedinho nervoso...";
+      _corTexto = TextStyle(color: Colors.red);
+    }else{
+      _mensagem = "VOCÊ É DEMAIS!!!";
+      _corTexto = TextStyle(color: Colors.purple);
+    }
   }
 
   @override
@@ -106,11 +130,15 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'You have pushed the button this many times:',
+              'O botão foi clicado\n\n',
             ),
             Text(
-              '$_counter',
+              '$_counter' ' Vezes\n\n',
               style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            Text(
+              _mensagem,
+              style: _corTexto,
             ),
           ],
         ),
